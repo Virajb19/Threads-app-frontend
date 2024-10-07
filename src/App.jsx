@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
+import UserPage from './pages/UserPage'
 
 export default function App(){
     
@@ -17,13 +18,14 @@ export default function App(){
         return () => lenis.destroy()
    }, [])
 
- return <main className="w-full">
+ return <main className="w-full bg-black">
     
    <BrowserRouter>
      <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/:username' element={<UserPage />}/>
      </Routes>
    </BrowserRouter>
 

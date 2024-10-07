@@ -33,6 +33,7 @@ export default function LoginPage() {
                <h3 className="text-gray-600 text-sm">Or</h3>
                <div className="grow w-10 h-[0.05rem] bg-zinc-600"></div>
           </div>
+          <a href="/signup" className="text-[#777777] ">Don't have an account ? <span className="text-blue-600 hover:underline hover:underline-offset-2">Sign up</span></a>
           <div className="flex p-5 mb:p-3 tb:p-3 gap-1 text-white items-center border rounded-xl w-4/5 mb:w-[90%] justify-between mt-5 cursor-pointer">
                 <img width={50} src="https://imgs.search.brave.com/sNTKp2mTf9wCBQjEmpUUkixC-kJI_5g3cCB_vqqnpHw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc29jaWFsLW1l/c3NhZ2luZy11aS1j/b2xvci1zaGFwZXMt/Mi1mcmVlLzEyOC9z/b2NpYWwtaW5zdGFn/cmFtLW5ldy1zcXVh/cmUyLTEyOC5wbmc"/>
                 <p className="text-lg mb:text-sm tb:text-c-xs font-bold">Continue with Instagram</p>
