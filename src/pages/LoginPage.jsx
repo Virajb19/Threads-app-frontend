@@ -25,7 +25,7 @@ export default function LoginPage() {
             const res = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {email, password},{withCredentials : true})
             console.log(res)
             navigate('/')
-          }} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (email == "" || password == "") && "cursor-not-allowed text-gray-400")}>Log in</button>
+          }} disabled={(email == "" || password == "")} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (email == "" || password == "") && "cursor-not-allowed bg-gray-400 text-gray-400")}>Log in</button>
           </div>
           <a href="/forgot-password" className="text-[#777777] text-sm mt-3 tracking-wider">Forgot Password ?</a>
           <div className="flex p-1 gap-5 items-center w-3/4 justify-around mt-4">

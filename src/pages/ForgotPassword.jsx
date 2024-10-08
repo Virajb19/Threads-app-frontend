@@ -2,6 +2,8 @@ import { useState } from "react";
 import Input from "../components/Input";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export default function ForgotPassword() {
 
@@ -13,7 +15,10 @@ export default function ForgotPassword() {
              <div className="flex flex-col items-center px-1 py-5 gap-5 w-[30%] mb:w-[90%] tb:w-1/2 border border-gray-600 rounded-xl">
                   <h3 className="text-white tracking-wide">Enter your email</h3>
                   <Input text="email" value={email} onChange={e => setEmail(e.target.value)}/>
-                  <motion.button whileHover={{scale: 1.07}} whileTap={{scale: 0.95}}  className={twMerge("text-black bg-white py-1 px-3 text-lg font-bold rounded-full", email === "" && "cursor-not-allowed text-zinc-500")}>Send mail</motion.button>
+                  <motion.button onClick={async () => {
+                    const res = await axios.post(`${BACKEND_URL}/api/v1/user/forgot-password`, {email}, {withCredentials: true})
+                    console.log(res)
+                  }} disabled={email === ""} whileHover={{scale: 1.07}} whileTap={{scale: 0.95}} className={twMerge("text-black bg-white py-1 px-3 text-lg font-bold rounded-full", email === "" && "cursor-not-allowed bg-gray-400 text-zinc-500")}>Send mail</motion.button>
              </div>
         </main>
 }

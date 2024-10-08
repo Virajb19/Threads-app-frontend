@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage'
 import SignUpPage from './pages/SignUpPage'
 import UserPage from './pages/UserPage'
 import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
+import VerifyEmail from './pages/VerifyEmail'
 
 export default function App(){
     
@@ -26,7 +28,9 @@ export default function App(){
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/verify-email' element={<VerifyEmail />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
+        <Route path='/reset-password/:token' element={<ResetPassword />}/>
         <Route path='/:username' element={<UserPage />}/>
      </Routes>
    </BrowserRouter>

@@ -26,7 +26,7 @@ export default function SignUpPage() {
                     const res = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {username, email, password}, {withCredentials: true})
                     console.log(res)
                     navigate('/')
-                  }} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (username == "" || email == "" || password == "") && "cursor-not-allowed text-gray-400")}>Sign up</button>
+                  }} disabled={(username == "" || email == "" || password == "")} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (username == "" || email == "" || password == "") && "cursor-not-allowed bg-gray-400 text-gray-400")}>Sign up</button>
                </div>
                <a href="/login" className="text-[#777777] text-sm mt-3 tracking-normal">Already have an account ? <span className="text-blue-500 font-medium hover:underline hover:underline-offset-2">Sign in</span></a>
           </div>
