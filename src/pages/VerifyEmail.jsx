@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { motion } from 'framer-motion'
 import { twMerge } from "tailwind-merge"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
 
 export default function VerifyEmail() {
 
@@ -18,8 +20,8 @@ export default function VerifyEmail() {
             const newCode = [...prevCode]
             newCode[i] = value
             return newCode
-        })
-        console.log(code)
+        })  
+        
         if(i < 5) inputRefs.current[i + 1].focus()
 
      } else e.target.value = ""
@@ -59,11 +61,20 @@ export default function VerifyEmail() {
                  <h3 className="text-white tracking-wide mb:text-2xl lp:text-4xl font-semibold">Verify the code</h3>
                  <div className="flex p-1 gap-2 tb:gap-4 lp:gap-3">
                  {code.map((digit,i) => {
-                    return <input onKeyDown={e => handleKeyDown(e,i)} value={digit} onKeyUp={e => handleKeyUp(e,i)} onInput={e => handleOnInput(e,i)} ref={el => inputRefs.current[i] = el} key={i} 
+                    return <input value={digit} onKeyDown={e => handleKeyDown(e,i)} onKeyUp={e => handleKeyUp(e,i)} onInput={e => handleOnInput(e,i)} ref={el => inputRefs.current[i] = el} key={i} 
                     className="size-10 text-center font-bold text-white text-lg lp:text-xl lp:size-14 border-2 border-gray-500 focus:border-blue-500 duration-100 bg-transparent focus:outline-none rounded-xl" />
                  })}
                  </div>
-                <motion.button disabled={code.some(d => d === "")} whileHover={{scale: 1.07}} whileTap={{scale: 0.95}} 
+                <motion.button onClick={async () => {
+                    if(code.every(d => d != "")) {
+                    try {
+                    const res = axios.post(`${BACKEND_URL}/api/v1/user/verify-email`, {code: code.join('')})
+                    console.log(res)
+                    } catch(e) {
+                        console.error(e)
+                    }
+                    }
+                }} disabled={code.some(d => d === "")} whileHover={{scale: 1.07}} whileTap={{scale: 0.95}} 
                 className={twMerge("text-black bg-white rounded-full px-4 py-2 font-bold transition-colors", code.some(d => d === "") && "cursor-not-allowed bg-gray-400 text-zinc-500")}>Verify Email</motion.button>
             </div>
         </main>
