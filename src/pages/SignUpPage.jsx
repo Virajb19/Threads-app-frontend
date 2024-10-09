@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge"
 import axios from "axios"
 import { BACKEND_URL } from "../config"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 export default function SignUpPage() {
 
@@ -12,6 +13,16 @@ export default function SignUpPage() {
     const [password,setPassword] = useState("") 
 
     const navigate = useNavigate()
+
+    async function sendRequest() {
+       try {
+       const res = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {username,email,password}, {withCredentials: true, headers: {"Content-Type": 'application/json'}})
+       console.log("Response: ",res)
+       } catch(error) {
+          console.log("Error: ",error.response.data)
+          toast.error(`${error.response.data.msg}`)
+       }
+    }
 
     return <main className="bg-black w-full min-h-screen flex-center">
              <img className="absolute top-0 hidden sm:block" src='https://static.cdninstagram.com/rsrc.php/yC/r/jxB9GUOHTf2.webp'/>
@@ -22,11 +33,7 @@ export default function SignUpPage() {
                   <Input text="Username" value={username} onChange={e => setUsername(e.target.value)}/>
                   <Input text="Email" value={email} onChange={e => setEmail(e.target.value)}/>
                   <Input text="Password" value={password} onChange={e => setPassword(e.target.value)}/>
-                  <button onClick={async () => {
-                    const res = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {username, email, password}, {withCredentials: true})
-                    console.log(res)
-                    navigate('/')
-                  }} disabled={(username == "" || email == "" || password == "")} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (username == "" || email == "" || password == "") && "cursor-not-allowed bg-gray-400 text-gray-400")}>Sign up</button>
+                  <button onClick={sendRequest} disabled={(username == "" || email == "" || password == "")} className={twMerge("w-4/5 bg-white rounded-lg p-4 text-lg font-extrabold hover:scale-95", (username == "" || email == "" || password == "") && "cursor-not-allowed bg-gray-400 text-zinc-500")}>Sign up</button>
                </div>
                <a href="/login" className="text-[#777777] text-sm mt-3 tracking-normal">Already have an account ? <span className="text-blue-500 font-medium hover:underline hover:underline-offset-2">Sign in</span></a>
           </div>
