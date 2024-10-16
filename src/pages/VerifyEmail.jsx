@@ -7,10 +7,12 @@ import { BACKEND_URL } from "../config"
 export default function VerifyEmail() {
 
    const inputRefs = useRef([])
+   const buttonRef = useRef(null)
    const [code,setCode] = useState(new Array(6).fill(""))
 
    useEffect(() => {
        inputRefs.current[0].focus()
+    //    buttonRef.current.click()
    }, [])
 
    const handleOnInput = useCallback((e,i) => {
@@ -64,8 +66,8 @@ export default function VerifyEmail() {
                     return <input value={digit} onKeyDown={e => handleKeyDown(e,i)} onKeyUp={e => handleKeyUp(e,i)} onInput={e => handleOnInput(e,i)} ref={el => inputRefs.current[i] = el} key={i} 
                     className="size-10 text-center font-bold text-white text-lg lp:text-xl lp:size-14 border-2 border-gray-500 focus:border-blue-500 duration-100 bg-transparent focus:outline-none rounded-xl" />
                  })}
-                 </div>
-                <motion.button onClick={async () => {
+                 </div> 
+                <motion.button ref={buttonRef} onClick={async () => {
                     if(code.every(d => d != "")) {
                     try {
                     const res = axios.post(`${BACKEND_URL}/api/v1/user/verify-email`, {code: code.join('')})

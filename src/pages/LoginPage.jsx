@@ -6,7 +6,6 @@ import { BACKEND_URL } from '../config.js'
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input.jsx";
 import { toast } from "react-toastify";
-import { Loader } from 'lucide-react';
 import 'react-toastify/dist/ReactToastify.css'
 
 
