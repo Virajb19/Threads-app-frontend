@@ -15,7 +15,7 @@ export default function HomePage() {
                         <div id='text' className='text-[0.8rem] text-left'>
                            {post.content}
                         </div>  
-                        <img width={200} className='rounded-md' src='https://imgs.search.brave.com/m_HbRkHHxsvwizh6FumS-GIr54JOQSOaNjf5SOaI55M/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzg1LzRj/LzRmLzg1NGM0Zjhk/NGY0NTg4ODUxZmNh/ZWZlODQ2ZWJmOWEx/LmpwZw'/>
+                        <img width={200} className='rounded-md' src='https://imgs.search.brave.com/yFLPbMIn1BcTxuf2Sqm0lzSzvXIsfTju2QOAnbQ-buk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzQzLzkwLzM3/LzM2MF9GXzQzOTAz/NzMyX1gxWjJnenk0/OTdhaXNnTUU2MmNy/bVUwMFNmOHNtUDU5/LmpwZw'/>
                     </div>
                  })}
             </div>
