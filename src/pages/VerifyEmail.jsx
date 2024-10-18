@@ -12,8 +12,11 @@ export default function VerifyEmail() {
 
    useEffect(() => {
        inputRefs.current[0].focus()
-    //    buttonRef.current.click()
    }, [])
+
+   useEffect(() => {
+      if(code.every(d => d != "")) buttonRef.current.click()
+   },[code])
 
    const handleOnInput = useCallback((e,i) => {
     let value = e.target.value
